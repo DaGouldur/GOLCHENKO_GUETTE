@@ -29,9 +29,13 @@ public class Grille {
             Cellules[i][colonne].JetonCourrant=unJeton;
             if(Cellules[i][colonne].presenceDesintegrateur()){
                 Cellules[i][colonne].recupererDesintegrateur();
-                JoueurCourrant.n
+                JoueurCourant.nombreDesintegrateurs++;
+            }
+            if(Cellules[i][colonne].presenceTrouNoir()){
+                Cellules[i][colonne].activerTrouNoir();
             }
         }
+        return true;
     }
     public boolean etreRemplie(){
         for (int i=0; i<6; i++){
@@ -74,6 +78,12 @@ public class Grille {
         for (i=0; i<7;i++){
             if(Cellules[i][colonne]==null){
                 Cellules[i][colonne]=Cellules[i+1][colonne];
+                if (i==6 && Cellules[6][colonne]==null){
+                    Cellules[i][colonne]=null;
+                }
+                else{
+                    Cellules[6][colonne]=Cellules[6][colonne];
+                }
             }
         }
     }
