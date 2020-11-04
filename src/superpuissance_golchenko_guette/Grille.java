@@ -76,7 +76,7 @@ public class Grille {
         while(Gagnant==null){
             for(int i=0;i<6;i++){
                 for(int j=0;i<7;i++){
-                    if(Cellules[i][j]!=null){
+                    if(Cellules[i][j]=="Rouge"){
                        couleur=lireCouleurDuJeton(i,j);
                        
                     }
