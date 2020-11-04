@@ -18,7 +18,7 @@ public class Cellule {
         JetonCourrant=null;
         trouNoir=false;
         desintegrateur=false;
-    }
+    }   
     public boolean affecterJeton(Jeton LeJetonCourrant){
         boolean A=false;
         if (JetonCourrant==null){
@@ -57,6 +57,13 @@ public class Cellule {
         }
         return desintegrateur;
     }
+    public boolean presenceDesintegrateur(){
+       return desintegrateur;
+    }
+    public boolean presenceTrouNoir(){
+        return trouNoir;
+    }
+    
     public String lireCouleurDuJeton(){
         return JetonCourrant.Couleur;
     }

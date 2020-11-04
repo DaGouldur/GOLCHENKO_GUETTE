@@ -12,5 +12,5 @@ package superpuissance_golchenko_guette;
 public class Partie {
     Joueur []  ListeJoueurs = new Joueur[2];
     Grille GrilleJeu;
-    Joueur JoueurCourrant; 
+    Joueur JoueurCourant; 
 }

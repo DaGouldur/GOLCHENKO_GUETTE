@@ -46,4 +46,8 @@ public class Joueur {
             return true;
         }
     }
+    public Jeton retirerJeton(){
+        nombreJetonsRestants=nombreJetonsRestants-1;
+        return ListeJetons[nombreJetonsRestants];
+    }
 }

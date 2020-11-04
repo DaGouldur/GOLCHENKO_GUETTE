@@ -19,16 +19,19 @@ public class Grille {
        }
        
     }
-    public boolean colonneRemplie(int ind_colonne){
-        return(Cellules[5][ind_colonne].recupererJeton()!=null);
-    }
-    public boolean ajouterJetonDansColonne(Joueur jouerCourrant, int ind_colonne){
-        if(colonneRemplie(ind_colonne)==true){
-            return false;
+    public boolean ajouterJetonDansColonne(Joueur JoueurCourant, int colonne){
+        if(colonneRemplie(colonne)==false){
+            int i=0;
+            while(Cellules[i][colonne].JetonCourrant!=null){
+                i++;
+            }
+            Jeton unJeton = JoueurCourant.retirerJeton();
+            Cellules[i][colonne].JetonCourrant=unJeton;
+            if(Cellules[i][colonne].presenceDesintegrateur()){
+                Cellules[i][colonne].recupererDesintegrateur();
+                JoueurCourrant.n
+            }
         }
-        int i=0;
-        
-     return true;   
     }
     public boolean etreRemplie(){
         for (int i=0; i<6; i++){
@@ -53,8 +56,8 @@ public class Grille {
     public void afficherGrilleSurConsole(){
         System.out.println(Cellules[6][7]);
     }
-    public boolean celluleOccupee(int indLigne, int indColonne ){
-        if (Cellules[indLigne][indColonne]!=null){
+    public boolean celluleOccupee(int ligne, int colonne ){
+        if (Cellules[ligne][colonne]!=null){
             return true;
         }
         return false;
@@ -64,14 +67,23 @@ public class Grille {
         
     }
     public boolean etreGagnantePourJoueur(Joueur JoueurCourrant){
-           
+           return
     }
-    public void tasserGrille(int intColonne){
+    public void tasserGrille(int colonne){
         int i;
         for (i=0; i<7;i++){
-            if(Cellules[i][intColonne]==null){
-                Cellules[i][intColonne]=Cellules[i+1][intColonne];
+            if(Cellules[i][colonne]==null){
+                Cellules[i][colonne]=Cellules[i+1][colonne];
             }
         }
     }
+   public boolean colonneRemplie(int indColonne){
+        return(Cellules[5][indColonne].recupererJeton()!=null);
+   }
+   public boolean placerTrouNoir(int ligne, int colonne){
+       if(Cellules[ligne][colonne]==null){
+           return true;
+       }
+       return false;    
+}
 }
