@@ -66,12 +66,23 @@ public class Grille {
         }
         return false;
     }
-    public String lireCouleurDuJeton(int indLigne, int indColonne){
-       
+    public String lireCouleurDuJeton(int ligne, int colonne){
+       return Cellules[ligne][colonne].lireCouleurDuJeton();
         
     }
     public boolean etreGagnantePourJoueur(Joueur JoueurCourrant){
-           return
+        String Gagnant=null;
+        String couleur;
+        while(Gagnant==null){
+            for(int i=0;i<6;i++){
+                for(int j=0;i<7;i++){
+                    if(Cellules[i][j]!=null){
+                       couleur=lireCouleurDuJeton(i,j);
+                       
+                    }
+        }
+        }
+        }
     }
     public void tasserGrille(int colonne){
         int i;
