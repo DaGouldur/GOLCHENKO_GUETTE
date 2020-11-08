@@ -12,17 +12,17 @@ package superpuissance_golchenko_guette;
 public class Cellule {
     boolean trouNoir;
     boolean desintegrateur;
-    Jeton JetonCourrant;
+    Jeton JetonCourant;
      
     public Cellule(){
-        JetonCourrant=null;
+        JetonCourant=null;
         trouNoir=false;
         desintegrateur=false;
     }   
     public boolean affecterJeton(Jeton LeJetonCourrant){
         boolean A=false;
-        if (JetonCourrant==null){
-            JetonCourrant=LeJetonCourrant;
+        if (JetonCourant==null){
+            JetonCourant=LeJetonCourrant;
            A=true;
         }
         else{
@@ -32,12 +32,12 @@ public class Cellule {
         return A;
     }
     public Jeton recupererJeton(){
-       return JetonCourrant;
+       return JetonCourant;
     }
     public boolean supprimerJeton(){
        boolean B = false;
-       if (JetonCourrant!=null){
-           JetonCourrant=null;
+       if (JetonCourant!=null){
+           JetonCourant=null;
            B=true;
        }
        else{
@@ -65,7 +65,7 @@ public class Cellule {
     }
     
     public String lireCouleurDuJeton(){
-        return JetonCourrant.Couleur;
+        return JetonCourant.Couleur;
     }
     public boolean recupererDesintegrateur(){
         if (desintegrateur==true){
@@ -75,8 +75,8 @@ public class Cellule {
     }
     public boolean activerTrouNoir(){
         if (trouNoir==true){
-           if (JetonCourrant!=null){
-           JetonCourrant=null;
+           if (JetonCourant!=null){
+           JetonCourant=null;
            return true;
            }
            else{

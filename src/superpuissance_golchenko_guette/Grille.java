@@ -22,11 +22,11 @@ public class Grille {
     public boolean ajouterJetonDansColonne(Joueur JoueurCourant, int colonne){
         if(colonneRemplie(colonne)==false){
             int i=0;
-            while(Cellules[i][colonne].JetonCourrant!=null){
+            while(Cellules[i][colonne].JetonCourant!=null){
                 i++;
             }
             Jeton unJeton = JoueurCourant.retirerJeton();
-            Cellules[i][colonne].JetonCourrant=unJeton;
+            Cellules[i][colonne].JetonCourant=unJeton;
             if(Cellules[i][colonne].presenceDesintegrateur()){
                 Cellules[i][colonne].recupererDesintegrateur();
                 JoueurCourant.nombreDesintegrateurs++;
@@ -107,4 +107,23 @@ public class Grille {
        }
        return false;    
 }
+      public boolean placerDesintegrateur(int ligne, int colonne){
+       if(Cellules[ligne][colonne]==null){
+           return true;
+       }
+       return false;    
+}
+    public boolean supprimerJeton(int ligne, int colonne){
+       if(Cellules[ligne][colonne].JetonCourant!=null){
+           Cellules[ligne][colonne].JetonCourant=null;
+           return true;
+       }
+       return false;    
+}     
+    public Jeton recuererJeton(int ligne, int colonne){
+        if(Cellules[ligne][colonne].JetonCourant!=null){
+            Cellules[ligne][colonne].JetonCourant=null;
+            Joueur unJoueur=JoueurCourant.ajouterJeton(Jeton JetonCourant);
+        }
+    }
 }

@@ -34,7 +34,7 @@ public class Joueur {
         return R;
     }
     
-    public void      obtenirDesintegrateur(){
+    public void obtenirDesintegrateur(){
        nombreDesintegrateurs= nombreDesintegrateurs+1;
     } 
     public boolean utiliserDesintegrateur(){
