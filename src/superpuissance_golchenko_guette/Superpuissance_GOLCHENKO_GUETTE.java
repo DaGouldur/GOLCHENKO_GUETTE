@@ -18,5 +18,5 @@ public class Superpuissance_GOLCHENKO_GUETTE {
         Partie nouvellePartie=new Partie();
         nouvellePartie.debuterPartie();
     }
-    
 }
+
