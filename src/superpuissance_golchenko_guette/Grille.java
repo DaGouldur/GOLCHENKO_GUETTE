@@ -121,9 +121,6 @@ public class Grille {
        return false;    
 }     
     public Jeton recupererJeton(int ligne, int colonne){
-        if(Cellules[ligne][colonne].JetonCourant!=null){
-            Cellules[ligne][colonne].JetonCourant=null;
-            Jeton JoueurCourant=ListeJetons.ajouterJeton(Jeton JetonCourant)) ;
-        }
+        return Cellules[ligne][colonne].recupererJeton();
     }
 }

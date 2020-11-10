@@ -79,4 +79,146 @@ public class Partie {
             }
             }
         }
+    public void debuterPartie(){
+    initialiserPartie();
+    int action;
+    Scanner sc = new Scanner(System.in);
+    do{
+        System.out.println("");
+        System.out.println(JoueurCourant.Nom+", c'est ton tour!");
+        System.out.println("");
+        System.out.println("Il te reste "+JoueurCourant.nombreJetonsRestants+" jetons");
+        System.out.println("");
+        System.out.println("Tu as "+JoueurCourant.nombreDesintegrateurs+" désintégrateurs");
+        System.out.println("");
+        System.out.println("Que voulez vous faire?");
+        System.out.println("1/ placer un jeton");
+        System.out.println("2/ désintégrer un jeton");
+        System.out.println("3/ récupérer un jeton ");
+        action = sc.nextInt(); 
+            switch (action) {
+                case 1 :
+                    if (JoueurCourant.nombreJetonsRestants==0){
+                        System.out.println("Tu n'as plus de jeton!");
+                        break;
+                    }
+                    System.out.println("Choisis la colonne ou tu veux ajouter le jeton.");
+                    int colonne = sc.nextInt();
+                    while (colonne<1||colonne>7){
+                        System.out.println("Cette colonne n'existe pas!");
+                        colonne = sc.nextInt();
+                    }
+                    while(GrilleJeu.colonneRemplie(colonne-1)){
+                        System.out.println("Cette colonne est pleine!");
+                        colonne = sc.nextInt();
+                    }
+                    GrilleJeu.ajouterJetonDansColonne(JoueurCourant,colonne-1);
+                    JoueurCourant.retirerJeton();
+                    System.out.println(JoueurCourant.nombreJetonsRestants);
+                    GrilleJeu.afficherGrilleSurConsole();
+                    if (JoueurCourant==ListeJoueurs[0]){
+                        JoueurCourant=ListeJoueurs[1]; 
+                    }
+                    else{
+                        JoueurCourant=ListeJoueurs[0];      
+                    }
+                    break;  
+                case 2 :
+                    if (JoueurCourant.nombreDesintegrateurs==0){
+                        System.out.println("Vous n'avez pas de désintégrateur!");
+                        break;
+                    }
+                    System.out.println("Choisir la ligne du jeton que vous voulez désintégrer");
+                    int lignedesintegration = sc.nextInt();
+                    while (lignedesintegration<1||lignedesintegration>6){
+                        System.out.println("Cette ligne n'existe pas!");
+                        lignedesintegration = sc.nextInt();
+                    }
+                    System.out.println("Choisir la colonne du jeton que vous voulez désintégrer");
+                    int colonnedesintegration = sc.nextInt();
+                    while (colonnedesintegration<1||colonnedesintegration>7){
+                        System.out.println("Cette colonne n'existe pas!");
+                        colonnedesintegration = sc.nextInt();
+                    }
+                    JoueurCourant.utiliserDesintegrateur();
+                    // le joueur ne peut desintegrer qu'un jeton de la couleur advrese
+                    while (JoueurCourant.Couleur == GrilleJeu.lireCouleurDuJeton(lignedesintegration-1, colonnedesintegration-1)||GrilleJeu.supprimerJeton(lignedesintegration-1, colonnedesintegration-1)==false){
+                        System.out.println("Choisir une cellule ou un jeton adverse est placé.");
+                        
+                        System.out.println("Choisir la ligne du jeton que vous voulez désintégrer");
+                        lignedesintegration = sc.nextInt();
+                        while (lignedesintegration<1||lignedesintegration>6){
+                            System.out.println("Cette ligne n'existe pas, veuillez saisir une ligne valide");
+                            lignedesintegration = sc.nextInt();
+                        }
+                        System.out.println("Choisir la colonne du jeton que vous voulez désintégrer");
+                        colonnedesintegration = sc.nextInt();
+                        while (colonnedesintegration<1||colonnedesintegration>7){
+                            System.out.println("Cette colonne n'existe pas, veuillez saisir une colonne valide");
+                            colonnedesintegration = sc.nextInt();
+                        }
+                    }
+                    GrilleJeu.supprimerJeton(lignedesintegration-1, colonnedesintegration-1);
+                    GrilleJeu.tasserGrille(colonnedesintegration-1);
+                    GrilleJeu.afficherGrilleSurConsole();
+                    if (JoueurCourant==ListeJoueurs[0]){
+                        JoueurCourant=ListeJoueurs[1];
+                    }
+                    else{
+                        JoueurCourant=ListeJoueurs[0];
+                    }
+                    break;
+                case 3 :
+                    if (JoueurCourant.nombreJetonsRestants==21){
+                        System.out.println("Vous avez tout vos jetons!");
+                        break;
+                    }
+                    System.out.println("Choisir la ligne du jeton que vous voulez récupérer");
+                    int lignerecupe = sc.nextInt();
+                    while (lignerecupe<1||lignerecupe>6){
+                        System.out.println("Cette ligne n'existe pas!");
+                        lignerecupe = sc.nextInt();
+                    }
+                    System.out.println("Choisir la colonne du jeton que vous voulez récupérer");
+                    int colonnerecupe = sc.nextInt();
+                    while (colonnerecupe<1||colonnerecupe>7){
+                        System.out.println("Cette colonne n'existe pas!");
+                        colonnerecupe = sc.nextInt();
+                    }
+                    while (GrilleJeu.lireCouleurDuJeton(lignerecupe-1, colonnerecupe-1)!=JoueurCourant.Couleur||GrilleJeu.supprimerJeton(lignerecupe-1, colonnerecupe-1)==false){
+                        System.out.println("Selectionner une cellule contenant un de vos jetons");
+                        System.out.println("Choisir la ligne du jeton que vous voulez récupérer");
+                        lignerecupe = sc.nextInt();
+                        while (lignerecupe<1||lignerecupe>6){
+                            System.out.println("Cette ligne n'existe pas!");
+                            lignerecupe = sc.nextInt();
+                        }
+                        System.out.println("Choisir la colonne du jeton que vous voulez désintégrer");
+                        colonnerecupe = sc.nextInt();
+                        while (colonnerecupe<1||colonnerecupe>7){
+                            System.out.println("Cette colonne n'existe pas!");
+                            colonnerecupe = sc.nextInt();
+                        }
+                    }
+                    Jeton jeton_a_recuperer=GrilleJeu.recupererJeton(lignerecupe-1, colonnerecupe-1);
+                    GrilleJeu.supprimerJeton(lignerecupe-1, colonnerecupe-1);
+                    GrilleJeu.tasserGrille(colonnerecupe-1);
+                    JoueurCourant.ajouterJeton(jeton_a_recuperer);
+                    GrilleJeu.afficherGrilleSurConsole();
+                    if (JoueurCourant==ListeJoueurs[0]){
+                        JoueurCourant=ListeJoueurs[1];
+                    }
+                    else{
+                        JoueurCourant=ListeJoueurs[0];
+                    }   
+                    break;
+            }
+    }while (GrilleJeu.etreGagnantePourJoueur(ListeJoueurs[0])==false&&GrilleJeu.etreGagnantePourJoueur(ListeJoueurs[1])==false&&GrilleJeu.etreRemplie()==false);
+    if (GrilleJeu.etreGagnantePourJoueur(ListeJoueurs[1])==true){
+        System.out.println(ListeJoueurs[1].Nom+" a gagné!!!");
     }
+    if (GrilleJeu.etreGagnantePourJoueur(ListeJoueurs[0])==true){
+        System.out.println(ListeJoueurs[0].Nom+" a gagné");
+    }
+}
+}
