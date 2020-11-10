@@ -24,14 +24,14 @@ public class Joueur {
     
     public boolean ajouterJeton(Jeton UnJeton){
         int i;
-        boolean R = false;
+        boolean R;
         for( i=0 ; i<=20 ; i++ ){
             if (ListeJetons [i]==null){
                 ListeJetons [i]=UnJeton;
-                R = true;
+                return true;
             }
         }
-        return R;
+        return false;
     }
     
     public void obtenirDesintegrateur(){

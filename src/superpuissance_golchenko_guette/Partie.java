@@ -18,10 +18,10 @@ public class Partie {
     Joueur JoueurCourant; 
     
     public void attribuerCouleursAuxJoueurs(){
-        Random r= new Random();
+        Random rand= new Random();
         boolean couleur;
-        couleur=r.nextBoolean();
-        if (couleur){
+        couleur=rand.nextBoolean();
+        if (couleur==true){
             ListeJoueurs[0].Couleur="Rouge";
             ListeJoueurs[1].Couleur="Jaune";
         }
@@ -47,9 +47,36 @@ public class Partie {
         ListeJoueurs[0]=J1;
         ListeJoueurs[1]=J2;
         attribuerCouleursAuxJoueurs();
-        System.out.println(J1.Nom+" est de couleur "+J1.Couleur);
-        System.out.println(J2.Nom+" est de couleur "+J2.Couleur);
-        for (int i=0;i<21; i++){
+        System.out.println(J1.Couleur+" est attribué a "+J1.Nom);
+        System.out.println(J2.Couleur+" est attribué a "+J2.Nom);
+        Random rand= new Random();
+        boolean lePremier=rand.nextBoolean();
+        if(lePremier==true){
+            JoueurCourant=ListeJoueurs[0];
+        }
+        else{
+            JoueurCourant=ListeJoueurs[1];
+        }
+        for(int i=0;i<21;i++){
+            J1.ajouterJeton(new Jeton(J1.Couleur));
+            J2.ajouterJeton(new Jeton(J2.Couleur));
+        }
+        int compteur=0;
+        for(int i=0;i<5;i++){
+            int ligneTrouNoir=rand.nextInt(6);
+            int colonneTrouNoir=rand.nextInt(7);
+            if(compteur<2){
+                GrilleJeu.placerDesintegrateur(ligneTrouNoir, colonneTrouNoir);
+                compteur=compteur+1;
+            }
+            GrilleJeu.placerTrouNoir(ligneTrouNoir, colonneTrouNoir);   
+        }
+        for(int i=0;i<3;i++){
+            int ligneDesintegrateur=rand.nextInt(6);
+            int colonneDesintegrateur=rand.nextInt(7);
+            if(GrilleJeu.Cellules[ligneDesintegrateur][colonneDesintegrateur]==null){
+            GrilleJeu.placerDesintegrateur(ligneDesintegrateur, colonneDesintegrateur);
+            }
+            }
         }
     }
-}

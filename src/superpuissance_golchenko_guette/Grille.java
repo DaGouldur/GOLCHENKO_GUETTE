@@ -120,10 +120,10 @@ public class Grille {
        }
        return false;    
 }     
-    public Jeton recuererJeton(int ligne, int colonne){
+    public Jeton recupererJeton(int ligne, int colonne){
         if(Cellules[ligne][colonne].JetonCourant!=null){
             Cellules[ligne][colonne].JetonCourant=null;
-            Joueur unJoueur=JoueurCourant.ajouterJeton(Jeton JetonCourant);
+            Jeton JoueurCourant=ListeJetons.ajouterJeton(Jeton JetonCourant)) ;
         }
     }
 }

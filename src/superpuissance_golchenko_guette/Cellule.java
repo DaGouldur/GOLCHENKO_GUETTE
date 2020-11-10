@@ -47,15 +47,15 @@ public class Cellule {
     }
     public boolean placerTrouNoir(){
         if (trouNoir==false){
-            trouNoir=true;
+            return true;
         }
-        return trouNoir;
+        return false;
     }
     public boolean placerDesintegrateur(){
         if (desintegrateur==false){
-            desintegrateur=true;
+            return true;
         }
-        return desintegrateur;
+        return false;
     }
     public boolean presenceDesintegrateur(){
        return desintegrateur;
@@ -70,8 +70,9 @@ public class Cellule {
     public boolean recupererDesintegrateur(){
         if (desintegrateur==true){
             desintegrateur=false;
+            return true;
         }
-        return desintegrateur;
+        return false;
     }
     public boolean activerTrouNoir(){
         if (trouNoir==true){
