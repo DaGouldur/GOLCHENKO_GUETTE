@@ -15,6 +15,7 @@ public class Joueur {
     int  nombreDesintegrateurs = 0;
     int nombreJetonsRestants;
     Jeton [] ListeJetons = new Jeton [21];
+    
     public Joueur(String Lenom){
         Nom = Lenom;
     }
@@ -23,15 +24,14 @@ public class Joueur {
     }
     
     public boolean ajouterJeton(Jeton UnJeton){
-        int i;
-        boolean R;
-        for( i=0 ; i<=20 ; i++ ){
-            if (ListeJetons [i]==null){
-                ListeJetons [i]=UnJeton;
-                return true;
-            }
-        }
+    if (nombreJetonsRestants >=21){// on ne peut pas posseder plus de 21 jetons
         return false;
+    }
+    else{// ajoute le jeton passé en parametre a la liste des jetons
+        ListeJetons[nombreJetonsRestants]=UnJeton ;
+        nombreJetonsRestants++;
+        return true;
+    }
     }
     
     public void obtenirDesintegrateur(){

@@ -20,30 +20,21 @@ public class Cellule {
         desintegrateur=false;
     }   
     public boolean affecterJeton(Jeton LeJetonCourrant){
-        boolean A=false;
         if (JetonCourant==null){
             JetonCourant=LeJetonCourrant;
-           A=true;
+           return true;
         }
-        else{
-            A=false;
-        }
-        
-        return A;
+        return false;
     }
     public Jeton recupererJeton(){
        return JetonCourant;
     }
     public boolean supprimerJeton(){
-       boolean B = false;
        if (JetonCourant!=null){
            JetonCourant=null;
-           B=true;
+           return true;
        }
-       else{
-           B=false;
-       }
-       return B;
+       return false;
     }
     public boolean placerTrouNoir(){
         if (trouNoir==true){
@@ -71,6 +62,9 @@ public class Cellule {
     }
     
     public String lireCouleurDuJeton(){
+        if (JetonCourant==null){
+            return "pas de jeton";
+        }
         return JetonCourant.Couleur;
     }
     public boolean recupererDesintegrateur(){
@@ -82,16 +76,10 @@ public class Cellule {
     }
     public boolean activerTrouNoir(){
         if (trouNoir==true){
-           if (JetonCourant!=null){
-           JetonCourant=null;
-           return true;
-           }
-           else{
-               return false;
-           }
+            trouNoir=false;
+            supprimerJeton();
+            return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 }

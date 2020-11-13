@@ -37,17 +37,14 @@ public class Grille {
         return true;
     }
     public boolean etreRemplie(){
-        for (int i=0; i<6; i++){
-           for (int j=0; j<7; j++){
-               if (Cellules[i][j]!=null){
-               return true;
-               }
-               else{
-                   return false;
-               }
-           }    
+    for (int i=0;i<6;i++){
+        for (int j=0;j<7;j++){
+            if (Cellules[i][j].JetonCourant==null){
+                return false;
+            }
         }
-        return false;
+    }
+        return true;
     }
 public void viderGrille(){
     for (int i=0;i<6;i++){
@@ -65,7 +62,7 @@ public void viderGrille(){
 }
     public void afficherGrilleSurConsole(){
         for (int i =0;i<6;i++){
-            for (int j =0;j<6;j++){
+            for (int j =0;j<7;j++){
                 if (Cellules[i][j].trouNoir==true){
                     System.out.print("T");
                 }
@@ -105,19 +102,13 @@ public void viderGrille(){
     }
     return false;
 }
-    public void tasserGrille(int colonne){
-        int i;
-        for (i=0; i<7;i++){
-            if(Cellules[i][colonne]==null){
-                Cellules[i][colonne]=Cellules[i+1][colonne];
-                if (i==6 && Cellules[6][colonne]==null){
-                    Cellules[i][colonne]=null;
-                }
-                else{
-                    Cellules[6][colonne]=Cellules[6][colonne];
-                }
-            }
-        }
+    public void tasserGrille(int ligne,int colonne){
+     while (ligne>0){
+        Cellules[ligne][colonne].JetonCourant=Cellules[ligne-1][colonne].JetonCourant;
+        ligne=ligne-1;
+         
+    }
+    Cellules[0][colonne].JetonCourant=null;
     }
    public boolean colonneRemplie(int indColonne){
         return(Cellules[5][indColonne].recupererJeton()!=null);

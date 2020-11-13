@@ -39,6 +39,7 @@ public class Partie {
     }
     public void initialiserPartie(){
         GrilleJeu.viderGrille();
+        Random rand= new Random();
         Scanner sc=new Scanner(System.in);
         System.out.println("Pseudo du premier joueur: ");
         Joueur J1=new Joueur(sc.nextLine());
@@ -49,7 +50,6 @@ public class Partie {
         attribuerCouleursAuxJoueurs();
         System.out.println(J1.Couleur+" est attribué a "+J1.Nom);
         System.out.println(J2.Couleur+" est attribué a "+J2.Nom);
-        Random rand= new Random();
         boolean lePremier=rand.nextBoolean();
         if(lePremier==true){
             JoueurCourant=ListeJoueurs[0];
@@ -61,15 +61,20 @@ public class Partie {
             J1.ajouterJeton(new Jeton(J1.Couleur));
             J2.ajouterJeton(new Jeton(J2.Couleur));
         }
-        int compteur=0;
+        int lim=0;
         for(int i=0;i<5;i++){
             int ligneTrouNoir=rand.nextInt(6);
             int colonneTrouNoir=rand.nextInt(7);
-            if(compteur<2){
+            if(lim<2){
+                if (GrilleJeu.Cellules[ligneTrouNoir][colonneTrouNoir].presenceDesintegrateur()==false){
                 GrilleJeu.placerDesintegrateur(ligneTrouNoir, colonneTrouNoir);
-                compteur=compteur+1;
+                lim=lim+1;
+            }
+            else{
+                i--;
             }
             GrilleJeu.placerTrouNoir(ligneTrouNoir, colonneTrouNoir);   
+        }
         }
         for(int i=0;i<3;i++){
             int ligneDesintegrateur=rand.nextInt(6);
@@ -160,7 +165,7 @@ public class Partie {
                         }
                     }
                     GrilleJeu.supprimerJeton(lignedesintegration-1, colonnedesintegration-1);
-                    GrilleJeu.tasserGrille(colonnedesintegration-1);
+                    GrilleJeu.tasserGrille(lignedesintegration-1,colonnedesintegration-1);
                     GrilleJeu.afficherGrilleSurConsole();
                     if (JoueurCourant==ListeJoueurs[0]){
                         JoueurCourant=ListeJoueurs[1];
@@ -203,7 +208,7 @@ public class Partie {
                     }
                     Jeton jeton_a_recuperer=GrilleJeu.recupererJeton(lignerecupe-1, colonnerecupe-1);
                     GrilleJeu.supprimerJeton(lignerecupe-1, colonnerecupe-1);
-                    GrilleJeu.tasserGrille(colonnerecupe-1);
+                    GrilleJeu.tasserGrille(lignerecupe-1,colonnerecupe-1);
                     JoueurCourant.ajouterJeton(jeton_a_recuperer);
                     GrilleJeu.afficherGrilleSurConsole();
                     if (JoueurCourant==ListeJoueurs[0]){
