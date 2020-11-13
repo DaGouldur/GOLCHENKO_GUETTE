@@ -78,9 +78,11 @@ public class Partie {
             GrilleJeu.placerDesintegrateur(ligneDesintegrateur, colonneDesintegrateur);
             }
             }
+        GrilleJeu.afficherGrilleSurConsole();
         }
     public void debuterPartie(){
     initialiserPartie();
+    GrilleJeu.afficherGrilleSurConsole();
     int action;
     Scanner sc = new Scanner(System.in);
     do{

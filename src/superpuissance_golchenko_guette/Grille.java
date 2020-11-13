@@ -58,7 +58,22 @@ public class Grille {
         }
     }
     public void afficherGrilleSurConsole(){
-        System.out.println(Cellules[6][7]);
+        for (int i =0;i<6;i++){
+            for (int j =0;j<6;j++){
+                if (Cellules[i][j].trouNoir==true){
+                    System.out.print("T");
+                }
+                if (Cellules[i][j].desintegrateur==true){
+                    System.out.print("D");
+                }
+                if (Cellules[i][j].JetonCourant==null){
+                    System.out.print("N");   
+                }
+                else{
+                    System.out.print(Cellules[i][j].JetonCourant);
+                }
+            }
+        }
     }
     public boolean celluleOccupee(int ligne, int colonne ){
         if (Cellules[ligne][colonne]!=null){
