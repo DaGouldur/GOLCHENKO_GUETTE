@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package superpuissance_golchenko_guette;
-
 /**
  *
  * @author dagou
@@ -50,13 +49,20 @@ public class Grille {
         }
         return false;
     }
-    public void viderGrille(){
-        for (int i=0; i<6; i++){
-           for (int j=0; j<7; j++){
-               Cellules[i][j]=null;
-           }
+public void viderGrille(){
+    for (int i=0;i<6;i++){
+        for (int j=0;j<7;j++){
+            
+            Cellules[i][j].JetonCourant=null;// supprime les jetons
+            if (Cellules[i][j].presenceTrouNoir()==true){// supprime ls trous noirs
+                Cellules[i][j].trouNoir=false;
+            }
+            if (Cellules[i][j].presenceDesintegrateur()==true){// supprime les desintegrateurs
+                Cellules[i][j].desintegrateur=false;
+            } 
         }
     }
+}
     public void afficherGrilleSurConsole(){
         for (int i =0;i<6;i++){
             for (int j =0;j<6;j++){
@@ -117,15 +123,17 @@ public class Grille {
         return(Cellules[5][indColonne].recupererJeton()!=null);
    }
    public boolean placerTrouNoir(int ligne, int colonne){
-       if(Cellules[ligne][colonne]==null){
+       if(Cellules[ligne][colonne].presenceTrouNoir()==false){
+           Cellules[ligne][colonne].placerTrouNoir();
            return true;
        }
        return false;    
 }
       public boolean placerDesintegrateur(int ligne, int colonne){
-       if(Cellules[ligne][colonne]==null){
+       if(Cellules[ligne][colonne].presenceDesintegrateur()==false){
+           Cellules[ligne][colonne].placerDesintegrateur();
            return true;
-       }
+        }
        return false;    
 }
     public boolean supprimerJeton(int ligne, int colonne){

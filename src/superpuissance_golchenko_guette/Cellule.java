@@ -46,16 +46,22 @@ public class Cellule {
        return B;
     }
     public boolean placerTrouNoir(){
-        if (trouNoir==false){
+        if (trouNoir==true){
+            return false;
+        }
+        else{
+            trouNoir=true;
             return true;
         }
-        return false;
     }
     public boolean placerDesintegrateur(){
-        if (desintegrateur==false){
+        if (desintegrateur==true){
+            return false;
+        }
+        else{
+            desintegrateur=true;
             return true;
         }
-        return false;
     }
     public boolean presenceDesintegrateur(){
        return desintegrateur;

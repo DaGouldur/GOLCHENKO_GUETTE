@@ -82,7 +82,6 @@ public class Partie {
         }
     public void debuterPartie(){
     initialiserPartie();
-    GrilleJeu.afficherGrilleSurConsole();
     int action;
     Scanner sc = new Scanner(System.in);
     do{
