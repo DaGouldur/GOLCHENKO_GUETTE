@@ -48,8 +48,8 @@ public class Partie {
         ListeJoueurs[0]=J1;
         ListeJoueurs[1]=J2;
         attribuerCouleursAuxJoueurs();
-        System.out.println(J1.Couleur+" est attribué a "+J1.Nom);
-        System.out.println(J2.Couleur+" est attribué a "+J2.Nom);
+        System.out.println(J1.Couleur+" est attribué au joueur "+J1.Nom);
+        System.out.println(J2.Couleur+" est attribué au joueur "+J2.Nom);
         boolean lePremier=rand.nextBoolean();
         if(lePremier==true){
             JoueurCourant=ListeJoueurs[0];
@@ -61,28 +61,20 @@ public class Partie {
             J1.ajouterJeton(new Jeton(J1.Couleur));
             J2.ajouterJeton(new Jeton(J2.Couleur));
         }
-        int lim=0;
-        for(int i=0;i<5;i++){
-            int ligneTrouNoir=rand.nextInt(6);
-            int colonneTrouNoir=rand.nextInt(7);
-            if(lim<2){
-                if (GrilleJeu.Cellules[ligneTrouNoir][colonneTrouNoir].presenceDesintegrateur()==false){
-                GrilleJeu.placerDesintegrateur(ligneTrouNoir, colonneTrouNoir);
-                lim=lim+1;
-            }
-            else{
-                i--;
-            }
-            GrilleJeu.placerTrouNoir(ligneTrouNoir, colonneTrouNoir);   
-        }
-        }
         for(int i=0;i<3;i++){
             int ligneDesintegrateur=rand.nextInt(6);
             int colonneDesintegrateur=rand.nextInt(7);
-            if(GrilleJeu.Cellules[ligneDesintegrateur][colonneDesintegrateur]==null){
+            if(GrilleJeu.Cellules[ligneDesintegrateur][colonneDesintegrateur].presenceDesintegrateur()==false){
             GrilleJeu.placerDesintegrateur(ligneDesintegrateur, colonneDesintegrateur);
             }
             }
+        int lim=0;
+        for(int i=0;i<5;i++){
+                int ligneTrouNoir=rand.nextInt(6);
+                int colonneTrouNoir=rand.nextInt(7);
+            GrilleJeu.placerTrouNoir(ligneTrouNoir, colonneTrouNoir);   
+        }
+        
         GrilleJeu.afficherGrilleSurConsole();
         }
     public void debuterPartie(){
