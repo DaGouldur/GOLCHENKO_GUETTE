@@ -61,20 +61,32 @@ public class Partie {
             J1.ajouterJeton(new Jeton(J1.Couleur));
             J2.ajouterJeton(new Jeton(J2.Couleur));
         }
+        for(int i=0;i<2;i++){
+            int ligneTrouNoirDes=rand.nextInt(6);
+            int colonneTrouNoirDes=rand.nextInt(7);
+            GrilleJeu.placerDesintegrateur(ligneTrouNoirDes, colonneTrouNoirDes);
+            GrilleJeu.placerTrouNoir(ligneTrouNoirDes, colonneTrouNoirDes);
+            }
         for(int i=0;i<3;i++){
+            int ligneTrouNoir=rand.nextInt(6);
+            int colonneTrouNoir=rand.nextInt(7);
+            if(GrilleJeu.Cellules[ligneTrouNoir][colonneTrouNoir].presenceDesintegrateur()==false){
+            GrilleJeu.placerTrouNoir(ligneTrouNoir, colonneTrouNoir);   
+            }
+        }
+        for(int i=0;i<3;i++){
+            String DesPlace=new String();
+            DesPlace="";
+            while(DesPlace==""){
             int ligneDesintegrateur=rand.nextInt(6);
             int colonneDesintegrateur=rand.nextInt(7);
-            if(GrilleJeu.Cellules[ligneDesintegrateur][colonneDesintegrateur].presenceDesintegrateur()==false){
-            GrilleJeu.placerDesintegrateur(ligneDesintegrateur, colonneDesintegrateur);
+                if(GrilleJeu.Cellules[ligneDesintegrateur][colonneDesintegrateur].presenceDesintegrateur()==false){
+                    if(GrilleJeu.Cellules[ligneDesintegrateur][colonneDesintegrateur].presenceTrouNoir()==false);
+                        GrilleJeu.placerDesintegrateur(ligneDesintegrateur, colonneDesintegrateur);
+                    DesPlace="ok";
+                }
             }
-            }
-        int lim=0;
-        for(int i=0;i<5;i++){
-                int ligneTrouNoir=rand.nextInt(6);
-                int colonneTrouNoir=rand.nextInt(7);
-            GrilleJeu.placerTrouNoir(ligneTrouNoir, colonneTrouNoir);   
         }
-        
         GrilleJeu.afficherGrilleSurConsole();
         }
     public void debuterPartie(){
@@ -111,7 +123,6 @@ public class Partie {
                         colonne = sc.nextInt();
                     }
                     GrilleJeu.ajouterJetonDansColonne(JoueurCourant,colonne-1);
-                    JoueurCourant.retirerJeton();
                     System.out.println(JoueurCourant.nombreJetonsRestants);
                     GrilleJeu.afficherGrilleSurConsole();
                     if (JoueurCourant==ListeJoueurs[0]){
