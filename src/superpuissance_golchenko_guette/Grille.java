@@ -158,7 +158,7 @@ public boolean etreGagnantePourJoueur(Joueur nom){
 }
     public boolean supprimerJeton(int ligne, int colonne){
        if(Cellules[ligne][colonne].JetonCourant!=null){
-           Cellules[ligne][colonne].JetonCourant=null;
+           Cellules[ligne][colonne].supprimerJeton();
            return true;
        }
        return false;    

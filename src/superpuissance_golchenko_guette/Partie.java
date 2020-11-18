@@ -133,7 +133,7 @@ public class Partie {
                     }
                     break;  
                 case 2 :
-                    if (JoueurCourant.nombreDesintegrateurs==0){
+                    if (JoueurCourant.utiliserDesintegrateur()==false){
                         System.out.println("Vous n'avez pas de désintégrateur!");
                         break;
                     }
@@ -151,9 +151,8 @@ public class Partie {
                     }
                     JoueurCourant.utiliserDesintegrateur();
                     // le joueur ne peut desintegrer qu'un jeton de la couleur advrese
-                    while (JoueurCourant.Couleur == GrilleJeu.lireCouleurDuJeton(lignedesintegration-1, colonnedesintegration-1)||GrilleJeu.supprimerJeton(lignedesintegration-1, colonnedesintegration-1)==false){
+                    while (JoueurCourant.Couleur == GrilleJeu.lireCouleurDuJeton(lignedesintegration-1, colonnedesintegration-1)||GrilleJeu.supprimerJeton(6-lignedesintegration, colonnedesintegration-1)==false){
                         System.out.println("Choisir une cellule ou un jeton adverse est placé.");
-                        
                         System.out.println("Choisir la ligne du jeton que vous voulez désintégrer");
                         lignedesintegration = sc.nextInt();
                         while (lignedesintegration<1||lignedesintegration>6){
@@ -167,8 +166,8 @@ public class Partie {
                             colonnedesintegration = sc.nextInt();
                         }
                     }
-                    GrilleJeu.supprimerJeton(lignedesintegration-1, colonnedesintegration-1);
-                    GrilleJeu.tasserGrille(lignedesintegration-1,colonnedesintegration-1);
+                    GrilleJeu.supprimerJeton(6-lignedesintegration, colonnedesintegration-1);
+                    GrilleJeu.tasserGrille(6-lignedesintegration,colonnedesintegration-1);
                     GrilleJeu.afficherGrilleSurConsole();
                     if (JoueurCourant==ListeJoueurs[0]){
                         JoueurCourant=ListeJoueurs[1];
