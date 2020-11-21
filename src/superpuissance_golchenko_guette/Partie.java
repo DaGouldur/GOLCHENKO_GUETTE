@@ -95,7 +95,7 @@ public class Partie {
     Scanner sc = new Scanner(System.in);
     do{
         System.out.println("");
-        System.out.println(JoueurCourant.Nom+", c'est ton tour!");
+        System.out.println(JoueurCourant.Nom+", c'est ton tour! "+"("+JoueurCourant.Couleur+")");
         System.out.println("");
         System.out.println("Il te reste "+JoueurCourant.nombreJetonsRestants+" jetons");
         System.out.println("");
